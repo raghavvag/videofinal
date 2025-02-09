@@ -12,8 +12,8 @@ app.config['MAX_CONTENT_LENGTH'] = 500 * 1024 * 1024  # 500MB limit
 app.config['ALLOWED_EXTENSIONS'] = {'mp4', 'avi', 'mov'}
 
 # Initialize the model once at startup
-MODELS_DIR = r'C:\Users\aarya\Downloads\AI Model\Video Model\weights'
-CFG_FILE = r'C:\Users\aarya\Downloads\AI Model\Video Model\config.json'
+MODELS_DIR = r'C:\Users\Raghav\videofinal\weights'
+CFG_FILE = r'C:\Users\Raghav\videofinal\config.json'
 DEVICE = 'cpu'  # Use 'cpu' if no GPU
 
 init(MODELS_DIR, CFG_FILE, DEVICE)
