@@ -4,6 +4,7 @@ from werkzeug.utils import secure_filename
 import os
 import uuid
 from scan import init, process
+from werkzeug.wrappers import Response
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS
@@ -53,6 +54,9 @@ def detect_deepfake():
     except Exception as e:
         os.remove(save_path)
         return jsonify({'error': str(e)}), 500
+def handler(request):
+    # The 'Response.from_app' helper converts your Flask WSGI app into a proper response.
+    return Response.from_app(app, request.environ)        
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

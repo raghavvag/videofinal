@@ -9,3 +9,5 @@ opencv-python==4.8.0.76  # Latest OpenCV
 timm==0.6.12  # Latest version compatible with Python 3.11  # Latest timm
 tqdm==4.65.0         # Latest tqdm
 gunicorn==21.2.0     # Keep as-is
+Flask==2.2.2
+Werkzeug==2.2.2
