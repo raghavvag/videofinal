@@ -11,3 +11,4 @@ tqdm==4.65.0         # Latest tqdm
 gunicorn==21.2.0     # Keep as-is
 Flask==2.2.2
 Werkzeug==2.2.2
+flask-cors==3.0.10 
