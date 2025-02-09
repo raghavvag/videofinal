@@ -7,3 +7,4 @@ timm==0.5.4
 torch==1.10.2
 torchvision==0.11.3
 tqdm==4.63.0
+gunicorn==21.2.0
