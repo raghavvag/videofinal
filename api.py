@@ -12,16 +12,18 @@ app.config['UPLOAD_FOLDER'] = './temp'
 app.config['MAX_CONTENT_LENGTH'] = 500 * 1024 * 1024  # 500MB limit
 app.config['ALLOWED_EXTENSIONS'] = {'mp4', 'avi', 'mov'}
 
-# Initialize the model once at startup
-MODELS_DIR = r'C:\Users\Raghav\videofinal\weights'
-CFG_FILE = r'C:\Users\Raghav\videofinal\config.json'
+# Define the base directory for your project
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Initialize the model once at startup using relative paths
+MODELS_DIR = os.path.join(BASE_DIR, 'weights')    # Assumes a folder named "weights" in your project
+CFG_FILE = os.path.join(BASE_DIR, 'config.json')    # Assumes "config.json" is located in your project root
 DEVICE = 'cpu'  # Use 'cpu' if no GPU
 
 init(MODELS_DIR, CFG_FILE, DEVICE)
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 @app.route('/detect', methods=['POST'])
 def detect_deepfake():
@@ -49,14 +51,15 @@ def detect_deepfake():
         os.remove(save_path)
         return jsonify({
             'score': score,
-            'is_deepfake': is_deepfake  # Now a Python boolean
+            'is_deepfake': is_deepfake
         })
     except Exception as e:
         os.remove(save_path)
         return jsonify({'error': str(e)}), 500
+
 def handler(request):
     # The 'Response.from_app' helper converts your Flask WSGI app into a proper response.
-    return Response.from_app(app, request.environ)        
+    return Response.from_app(app, request.environ)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
