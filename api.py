@@ -3,7 +3,7 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import os
 import uuid
-from scan import init, process
+from deepfake_detection_engine import init, process
 from werkzeug.wrappers import Response
 
 app = Flask(__name__)

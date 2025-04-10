@@ -1,16 +1,19 @@
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from .env file
+# Environment configuration loader
 load_dotenv()
 
-# Access variables
-example_name = os.getenv("EXAMPLE_NAME")
-models_dir = os.getenv("MODELS_DIR")
-cfg_file = os.getenv("CFG_FILE")
-port = os.getenv("PORT")
+# Configuration variables retrieval
+ENV_VARS = {
+    "app_name": os.getenv("EXAMPLE_NAME"),
+    "model_directory": os.getenv("MODELS_DIR"),
+    "config_file": os.getenv("CFG_FILE"),
+    "server_port": os.getenv("PORT")
+}
 
-print("EXAMPLE_NAME:", example_name)
-print("MODELS_DIR:", models_dir)
-print("CFG_FILE:", cfg_file)
-print("PORT:", port)
+# Display configuration information
+print("EXAMPLE_NAME:", ENV_VARS["app_name"])
+print("MODELS_DIR:", ENV_VARS["model_directory"])
+print("CFG_FILE:", ENV_VARS["config_file"])
+print("PORT:", ENV_VARS["server_port"])
